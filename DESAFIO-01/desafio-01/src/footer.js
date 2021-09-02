@@ -1,9 +1,7 @@
-import {H5} from "./headings";
-
-function Footer () {
+function Footer ({children}) {
     return (
         <footer>
-            <H5 children="Desenvolvido com amor (e uma pitada de ódio) por Letícia Fontoura" />
+            {children}
         </footer>
     )
 }

@@ -1,12 +1,7 @@
-import Button from "./button";
-
-function Sidebar () {
+function Sidebar ({children}) {
     return (
         <aside>
-            <p>Para saber mais sobre Bacon Ipsum:</p>
-            <Button kind="primary" name="Clique aqui"/>
-            <p>Se você é vegano/vegetariano, me perdoe e:</p>
-            <Button kind="secondary" name="NÃO clique aqui"/>
+            {children}
         </aside>
     )
 }
