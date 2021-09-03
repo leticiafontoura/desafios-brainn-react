@@ -123,3 +123,14 @@ button {
     background-color: rgb(143, 51, 255);
     color: #fff;
 }
+
+@media (max-width: 560px) {
+    #root {
+        grid-template-areas: 
+        'header header header'
+        'menu menu menu'
+        'sidebar sidebar sidebar'
+        'content content content' 
+        'footer footer footer';
+    }
+}
