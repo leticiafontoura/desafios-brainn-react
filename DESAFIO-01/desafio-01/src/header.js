@@ -1,7 +1,9 @@
-function Header ({children}) {
+import {H1} from "./headings";
+
+function Header () {
     return (
         <header>
-           {children}
+           <H1>Bacon Ipsum</H1>
         </header>
     )
 }
