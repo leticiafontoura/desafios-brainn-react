@@ -70,16 +70,22 @@
     grid-column-end: 4; */
 }
 
+aside > ul li {
+    cursor: auto;
+    display: block;
+}
+
 ul {
     list-style-type: none;
     padding: 0;
     color: rgb(179, 178, 178);
-    cursor: no-drop;
+    
 }
 
 ul li {
     display: inline-block;
     margin: 10px;
+    cursor: no-drop;
 }
 
 p {

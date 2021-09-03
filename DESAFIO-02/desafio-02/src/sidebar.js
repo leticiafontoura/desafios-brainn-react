@@ -1,13 +1,27 @@
 import Button from "./button";
 
 function Sidebar () {
+
+    const menuItems = [
+        {
+            id: 1,
+            title: <h1>Titulo</h1>,
+            content: <p>isso funciona????</p>
+        },
+        {
+            id: 2,
+            title: <h1>Titulo2</h1>,
+            content: <p>isso funciona2????</p>
+        },
+    ]
+
     return (
         <aside>
-            
-             <p>Caso queira saber mais sobre bacon ipsum:</p>
-            <Button kind="primary">Clique aqui</Button>
-            <p>Se você não consome carnes:</p>
-            <Button kind="secondary">Clique aqui</Button>
+            <ul>
+            {menuItems.map(item => (
+                <li><a href="#">{item.title}</a></li>
+            ))}
+            </ul>
         </aside>
     )
 }
