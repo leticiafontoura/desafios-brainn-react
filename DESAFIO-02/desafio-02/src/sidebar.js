@@ -1,10 +1,13 @@
+import {H2} from "./headings"
+
 function Sidebar (props) {
 
     return (
         <aside>
+            <H2>Artigos</H2>
             <ul>
-            {props.menuItems.map(item => (
-                <li><a href="/" onClick={(e) => {
+            {props.postsItems.map(item => (
+                <li key={item.id}><a href="/" onClick={(e) => {
                     e.preventDefault();
                     props.handleClick(item.id)
                 } }>{item.title}</a></li>

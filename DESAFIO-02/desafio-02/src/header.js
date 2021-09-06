@@ -3,7 +3,7 @@ import {H1} from "./headings";
 function Header () {
     return (
         <header>
-           <H1>Bacon Ipsum</H1>
+           <H1>Pets, pets, pets</H1>
         </header>
     )
 }
