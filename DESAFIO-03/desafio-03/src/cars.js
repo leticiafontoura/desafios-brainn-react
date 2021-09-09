@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 
 function Cars () {
-    
+  
     const [image, setImage] = useState("");
     const [make, setMake] = useState("");
     const [year, setYear] = useState("");
@@ -121,30 +121,29 @@ function Cars () {
                 <button type="submit" data-js="submit-btn" className="submit-btn">Cadastrar 🚗</button>
             </p>
         </form>
-        <UserMessage delMsg={userMsg} setDelMsg={setUserMsg}/>
-        <Table carsObj={carsObj} handleDelete={handleDelete} delMsg={userMsg}/>
+       { userMsg ? <UserMessage userMsg={userMsg} setUserMsg={setUserMsg}/> : <></>}
+        <Table carsObj={carsObj} handleDelete={handleDelete} userMsg={userMsg}/>
         </>
     )
 
 }
 
-function UserMessage({delMsg, setDelMsg}) {
+function UserMessage({userMsg, setUserMsg}) {
 
     useEffect(() => {
         const id = setTimeout(() => {
-            setDelMsg("")
+            setUserMsg("")
         }, 3000)
 
         return () => clearInterval(id)
     })
     
     return (
-        <div>{delMsg}</div>
+        <div className="user-message">{userMsg}</div>
     )
 }
 
 function Table ({carsObj, handleDelete}) {
-
 
     return (
         <table>
@@ -165,7 +164,6 @@ function Table ({carsObj, handleDelete}) {
                 :
                 carsObj.map((car) => {
                     return (
-                    <>
                     <tr>
                         <td><img src={car.image} alt={car.brandModel} width="130" height="auto"/></td>
                         <td>{car.brandModel}</td>
@@ -176,8 +174,6 @@ function Table ({carsObj, handleDelete}) {
                             handleDelete(car.plate)
                         }}>Deletar</button></td>
                     </tr>
-                   
-                    </>
                     )
                 })
                 }

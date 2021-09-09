@@ -18,8 +18,9 @@ body {
 h1 {
   margin-bottom: 50px;
 }
-.error-message {
-  display: none;
+
+.user-message {
+  margin-top: 20px;
 }
 
 td, th {
@@ -66,7 +67,7 @@ input {
   margin: 10px
 }
 
-.submit-btn, .edit-save-btn, .cancel-save-btn {
+.submit-btn, .del-btn {
   background-color: palegoldenrod;
   border-radius: 10px;
   border: 0px;
@@ -75,41 +76,3 @@ input {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   color: #2c3e50;
 }
-
-.del-btn, .edit-btn {
-  background-color: palegoldenrod;
-  border-radius: 10px;
-  border: 0px;
-  padding: 10px;
-  margin: 0 10px
-}
-
-.form-edit-modal {
-  width: 100%;
-  position: absolute;
-  visibility: hidden;
-  opacity: 0;
-  transform: scale(0);
-  transition: all .3s ease;
-  z-index: 1000;
-  background-color: white;
-}
-
-.cars-form-edit {
-  background-color: white;
-  padding: 10px;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-}
-
-.expand {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position:fixed;
-  top: 10px;
-  opacity: 1;
-  visibility: visible;
-  transform: scale(1);
-  height: 100%;
-}
-
