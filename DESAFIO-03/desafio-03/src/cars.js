@@ -1,13 +1,13 @@
 import {useEffect, useState} from "react";
 
 function Cars () {
-
+    
     const [image, setImage] = useState("");
     const [make, setMake] = useState("");
     const [year, setYear] = useState("");
     const [plate, setPlate] = useState("");
     const [color, setColor] = useState("");
-    const [delMsg, setDelMsg] = useState(undefined);
+    const [userMsg, setUserMsg] = useState(undefined);
     const [carsObj, setCarsObj] = useState([]);  
 
     useEffect(() => {
@@ -37,8 +37,7 @@ function Cars () {
                     "Content-type": "application/json; charset=UTF-8"
                 }});
                 const delJson = await response.json();
-                console.log(delJson.message);
-                setDelMsg(delJson.message);
+                setUserMsg(delJson.message);
                 setCarsObj((prevState) => prevState.filter((car) => car.plate !== carPlate))
         }
         
@@ -62,12 +61,14 @@ function Cars () {
                 "Content-type": "application/json; charset=UTF-8"
                 }});
     
-                const carsJson = await response.json();
-                console.log(carsJson)
+                const postResponse = await response.json();
 
-                if (carsJson.error === true) {
+                if (postResponse.error === true) {
+                    setUserMsg(postResponse.message)
                     return
                 }
+
+                setUserMsg(postResponse.message)
 
                 setCarsObj([
                     ...carsObj,
@@ -120,15 +121,30 @@ function Cars () {
                 <button type="submit" data-js="submit-btn" className="submit-btn">Cadastrar 🚗</button>
             </p>
         </form>
-        <Table carsObj={carsObj} handleDelete={handleDelete} delMsg={delMsg}/>
+        <UserMessage delMsg={userMsg} setDelMsg={setUserMsg}/>
+        <Table carsObj={carsObj} handleDelete={handleDelete} delMsg={userMsg}/>
         </>
     )
 
 }
 
-function Table ({carsObj, handleDelete, delMsg}) {
+function UserMessage({delMsg, setDelMsg}) {
 
+    useEffect(() => {
+        const id = setTimeout(() => {
+            setDelMsg("")
+        }, 3000)
+
+        return () => clearInterval(id)
+    })
     
+    return (
+        <div>{delMsg}</div>
+    )
+}
+
+function Table ({carsObj, handleDelete}) {
+
 
     return (
         <table>
@@ -164,7 +180,7 @@ function Table ({carsObj, handleDelete, delMsg}) {
                     </>
                     )
                 })
-            }
+                }
             </tbody>
         </table>
     )
