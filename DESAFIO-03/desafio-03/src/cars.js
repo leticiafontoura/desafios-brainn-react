@@ -26,6 +26,14 @@ function Cars () {
         getCars();
     }, [])
 
+    useEffect(() => {
+        const id = setTimeout(() => {
+            setUserMsg("")
+        }, 3000)
+
+        return () => clearTimeout(id)
+    })
+
     function handleDelete(carPlate) {
         async function deleteCars() {
             const response = await fetch("http://localhost:3333/cars", {
@@ -121,22 +129,15 @@ function Cars () {
                 <button type="submit" data-js="submit-btn" className="submit-btn">Cadastrar 🚗</button>
             </p>
         </form>
-       { userMsg ? <UserMessage userMsg={userMsg} setUserMsg={setUserMsg}/> : <></>}
+       { userMsg ? <UserMessage userMsg={userMsg} /> : <></>}
         <Table carsObj={carsObj} handleDelete={handleDelete} userMsg={userMsg}/>
         </>
     )
 
 }
 
-function UserMessage({userMsg, setUserMsg}) {
+function UserMessage({userMsg}) {
 
-    useEffect(() => {
-        const id = setTimeout(() => {
-            setUserMsg("")
-        }, 3000)
-
-        return () => clearInterval(id)
-    })
     
     return (
         <div className="user-message">{userMsg}</div>
@@ -162,15 +163,15 @@ function Table ({carsObj, handleDelete}) {
                     <td colSpan="6">Nenhum carro cadastrado</td>
                 </tr>
                 :
-                carsObj.map((car) => {
+                carsObj.map((car, index) => {
                     return (
                     <tr>
-                        <td><img src={car.image} alt={car.brandModel} width="130" height="auto"/></td>
-                        <td>{car.brandModel}</td>
-                        <td>{car.year}</td>
-                        <td>{car.plate}</td>
-                        <td>{car.color}</td>
-                        <td><button className="del-btn" data-js="del-btn" alt="excluir" onClick={() => {
+                        <td key={index + (Math.random() * 1)}><img src={car.image} alt={car.brandModel} width="130" height="auto"/></td>
+                        <td key={index + (Math.random() * 1)}>{car.brandModel}</td>
+                        <td key={index + (Math.random() * 1)}>{car.year}</td>
+                        <td key={index + (Math.random() * 1)}>{car.plate}</td>
+                        <td key={index + (Math.random() * 1)}>{car.color}</td>
+                        <td key={index + (Math.random() * 1)}><button className="del-btn" data-js="del-btn" alt="excluir" onClick={() => {
                             handleDelete(car.plate)
                         }}>Deletar</button></td>
                     </tr>
