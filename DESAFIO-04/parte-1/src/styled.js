@@ -27,6 +27,10 @@ export const GlobalStyle = createGlobalStyle`
             'footer footer footer';
             grid-template-rows: 200px 100px 150px minmax(500px, auto) 100px;
         }
+
+        main {
+            padding: 10px;
+        }
     }
 
     * {
